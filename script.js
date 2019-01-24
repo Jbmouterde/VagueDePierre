@@ -1,8 +1,3 @@
-var heroImage = new Image();
-heroImage.src = "./images/ee.png";
-
-var ennemyImage = new Image();
-ennemyImage.src = "./images/f.png";
 
 
 /**
@@ -81,7 +76,14 @@ function drawNumber(n, x, y, ralign) {
 	}
 	ctx.restore();
 }
-//
+
+var heroImage = new Image();
+heroImage.src = "./images/ee.png";
+
+var ennemyImage = new Image();
+ennemyImage.src = "./images/f.png";
+
+
 var
 /**
  * Constants
@@ -102,7 +104,6 @@ keystate,
  * 
  * @type {Object}
  */
-
 player = {
 	x: 0,
 	y: 0,
@@ -154,6 +155,7 @@ ai = {
 },
 /**	
  * The ball object
+
  * 
  * @type {Object}
  */
@@ -222,7 +224,11 @@ ball = {
 		// reset the ball when ball outside of the canvas in the
 		// x direction
 		if (0 > this.x+this.side || this.x > WIDTH) {
-			this.serve(pdle===player ? 1 : -1);
+			var isplayer = pdle === player;
+			
+			this.serve(isplayer ? 1 : -1);
+			player.score += isplayer ? 0 : 1;
+			ai.score += isplayer ? 1 : 0;
 		}
 	},
 	/**
@@ -232,6 +238,23 @@ ball = {
 		ctx.fillRect(this.x, this.y, this.side, this.side);
 	}
 };
+function requestFullscreen() {
+	console.log(canvas);
+	if (canvas.requestFullscreen) {
+		canvas.requestFullscreen();
+	} else if (canvas.msRequestFullscreen) {
+		canvas.msRequestFullscreen();
+	} else if (canvas.mozRequestFullScreen) {
+		canvas.mozRequestFullScreen();
+	} else if (canvas.webkitRequestFullscreen) {
+		canvas.webkitRequestFullscreen();
+	}
+	window.onresize = function() {
+		canvas.width = WIDTH = window.innerWidth;
+		canvas.height = HEIGHT = window.innerHeight;
+		init();
+	}
+}
 /**
  * Starts the game
  */
@@ -251,6 +274,19 @@ function main() {
 		delete keystate[evt.keyCode];
 	});
 	init(); // initiate game objects
+	function touchevt(evt) {
+		var el = evt.target,
+			oy = 0;
+		do {
+			oy += el.offsetTop;
+		} while (el = el.parentOffset)
+		player.y = evt.touches[0].clientY - oy - player.height/2;	
+	}
+	canvas.addEventListener("touchmove", touchevt);
+	canvas.addEventListener("touchstart", touchevt);
+	var d = document.createElement("div");
+	d.innerHTML = '<svg onclick="requestFullscreen()"width="20" height="16" opacity="0.5"><path d="M0 5v-5h5m10 0h5v5m0 6v5h-5m-10 0h-5v-5M6 6h8v4h-8z"style="fill:none;stroke:#000;stroke-width:4"></path></svg>';
+	document.body.appendChild(d);
 	// game loop function
 	var loop = function() {
 		update();
@@ -265,8 +301,10 @@ function main() {
 function init() {
 	player.x = player.width;
 	player.y = (HEIGHT - player.height)/2;
+	player.score = 0;
 	ai.x = WIDTH - (player.width + ai.width);
 	ai.y = (HEIGHT - ai.height)/2;
+	ai.score = 0;
 	ball.serve(1);
 }
 /**
@@ -296,6 +334,10 @@ function draw() {
 		ctx.fillRect(x, y+step*0.25, w, step*0.5);
 		y += step;
 	}
+	// draw the scores
+	var w2 = WIDTH/2;
+	drawNumber(pad(player.score), w2-20, 20, true);
+	drawNumber(pad(ai.score), w2+20, 20);
 	ctx.restore();
 }
 // start and run the game

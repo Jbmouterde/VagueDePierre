@@ -1,8 +1,87 @@
 var heroImage = new Image();
-heroImage.src = "./images/d.png";
+heroImage.src = "./images/ee.png";
 
 var ennemyImage = new Image();
-ennemyImage.src = "./images/r.png";
+ennemyImage.src = "./images/f.png";
+
+
+/**
+ * Scoreboard stuff
+ *  _   0
+ * |_| 123 <= coresponding indexes, ie. for 1 is 
+ * |_| 456    bar 3 and 6 visible => 0 001 001
+ * 
+ */
+var NUMS = [
+	"1 101 111",
+	"0 001 001",
+	"1 011 110",
+	"1 011 011",
+	"0 111 001",
+	"1 110 011",
+	"1 110 111",
+	"1 001 001",
+	"1 111 111",
+	"1 111 011"
+],
+POINTS = [
+	[0, 0, 1, 0],
+	[0, 0, 0, 1],
+	[0, 1, 1, 1],
+	[1, 0, 1, 1],
+	[0, 1, 0, 2],
+	[0, 2, 1, 2],
+	[1, 1, 1, 2]
+];
+// Convert the strings in NUMS to a boolean array
+for (var i = 0; i < NUMS.length; i++) {
+	var n = NUMS[i].replace(/\s+/g, "");
+	NUMS[i] = (function() {
+		var l = [];
+		for (var j = 0; j < n.length; j++) {
+			l.push(n[j] === "1");
+		}
+		return l;
+	})();
+}
+function pad(str, padding, width) {
+	return (new Array(width||2).join(padding||0)+str).slice(-width)
+}
+function drawNumber(n, x, y, ralign) {
+	n = n.toString(); // convert to string => possible to loop thru all digits
+	var size = 32,
+		padding = 16;
+	
+	ctx.save();
+	ctx.strokeStyle = "#fff";
+	ctx.lineCap = "square";
+	ctx.lineWidth = padding/2;
+	if (ralign) { // if right aligned move x coord accordingly
+		x -= (n.length*(padding+size)-padding);
+	}
+	ctx.translate(x, y);
+	for (var i = 0; i < n.length; i++) {
+		var num = NUMS[parseInt(n[i])];
+		
+		ctx.beginPath();
+		for (var j = 0; j < num.length; j++) {
+			if (num[j]) {
+				var p = POINTS[j];
+				ctx.moveTo(p[0]*size, p[1]*size);
+				ctx.lineTo(p[2]*size, p[3]*size);
+			}
+		}
+		ctx.closePath();
+		ctx.stroke();
+		// fix anoying bug
+		var p2 = padding/2,
+			p4 = padding/4;
+		ctx.fillRect(size - p4, 2*size - p4, p2, p2);
+		ctx.translate(size+padding, 0);
+	}
+	ctx.restore();
+}
+//
 var
 /**
  * Constants
@@ -26,9 +105,9 @@ keystate,
 
 player = {
 	x: 0,
-	y: 100,
-	width:  20,
-	height: 100,
+	y: 0,
+	width:  50,
+	height: 80,
 	/**
 	 * Update the position depending on pressed keys
 	 */
@@ -53,8 +132,8 @@ player = {
 ai = {
 	x: 0,
 	y: 200,
-	width:  20,
-	height: 100,
+	width:  50,
+	height: 80,
 	/**
 	 * Update the position depending on the ball position
 	 */

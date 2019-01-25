@@ -1,5 +1,16 @@
 
+// TIMER 
+var sec = 0;
+function pad ( val ) { return val > 9 ? val : "0" + val; }
+setInterval( function(){
+	document.getElementById("seconds").innerHTML=pad(++sec%60);
+	document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
+}, 1000);
 
+// BUTTON START 
+$("body > div.center > button").click(function(){
+    location.reload();
+  });
 /**
  * Scoreboard stuff
  *  _   0
@@ -83,6 +94,8 @@ heroImage.src = "./images/ee.png";
 var ennemyImage = new Image();
 ennemyImage.src = "./images/f.png";
 
+var argent = new Image();
+argent.src = "./images/argent.png";
 
 var
 /**
@@ -113,8 +126,8 @@ player = {
 	 * Update the position depending on pressed keys
 	 */
 	update: function() {
-		if (keystate[UpArrow]) this.y -= 7;
-		if (keystate[DownArrow]) this.y += 7;
+		if (keystate[UpArrow]) this.y -= 10;
+		if (keystate[DownArrow]) this.y += 10;
 		// keep the paddle inside of the canvas
 		this.y = Math.max(Math.min(this.y, HEIGHT - this.height), 0);
 	},
@@ -285,7 +298,7 @@ function main() {
 	canvas.addEventListener("touchmove", touchevt);
 	canvas.addEventListener("touchstart", touchevt);
 	var d = document.createElement("div");
-	d.innerHTML = '<svg onclick="requestFullscreen()"width="20" height="16" opacity="0.5"><path d="M0 5v-5h5m10 0h5v5m0 6v5h-5m-10 0h-5v-5M6 6h8v4h-8z"style="fill:none;stroke:#000;stroke-width:4"></path></svg>';
+	// d.innerHTML = '<svg onclick="requestFullscreen()"width="20" height="16" opacity="0.5"><path d="M0 5v-5h5m10 0h5v5m0 6v5h-5m-10 0h-5v-5M6 6h8v4h-8z"style="fill:none;stroke:#000;stroke-width:4"></path></svg>';
 	document.body.appendChild(d);
 	// game loop function
 	var loop = function() {

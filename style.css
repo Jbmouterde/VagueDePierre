@@ -1,10 +1,43 @@
 body > p {
     position : center ;
-    color : blue;
+    color : white;
     text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 body {
-    background-color : lightblue
+    background-color : lightblue;
+    background-image: url("./images/logo.png")
+}
+
+canvas {
+    display: block;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 115px
+
+}
+
+
+button {
+    text-align: center;
+    background-color: white;
+    font-size: 12px;
+    padding: 12px 28px;
+    border-radius: 70px;
+    margin-bottom: 10px;
+    color : red;
+}
+
+.center {
+    text-align: center; 
+}
+
+button:hover{
+    background-color : red; 
+    color : white  
 }

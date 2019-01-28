@@ -1,4 +1,5 @@
 
+
 // TIMER 
 var sec = 0;
 function pad ( val ) { return val > 9 ? val : "0" + val; }
@@ -64,6 +65,9 @@ function drawNumber(n, x, y, ralign) {
 	ctx.lineWidth = padding/2;
 	if (ralign) { // if right aligned move x coord accordingly
 		x -= (n.length*(padding+size)-padding);
+
+		// console.log(n)
+		
 	}
 	ctx.translate(x, y);
 	for (var i = 0; i < n.length; i++) {
@@ -75,7 +79,11 @@ function drawNumber(n, x, y, ralign) {
 				var p = POINTS[j];
 				ctx.moveTo(p[0]*size, p[1]*size);
 				ctx.lineTo(p[2]*size, p[3]*size);
+				// console.log(j.length, j)
+				// console.log(num.length, num)
+
 			}
+		
 		}
 		ctx.closePath();
 		ctx.stroke();
@@ -84,8 +92,15 @@ function drawNumber(n, x, y, ralign) {
 			p4 = padding/4;
 		ctx.fillRect(size - p4, 2*size - p4, p2, p2);
 		ctx.translate(size+padding, 0);
+
 	}
 	ctx.restore();
+	// console.log(player.n)
+
+	if (n >= 10){
+		alert("GAME OVER!!!" );
+		window.location.href = "index.html" 
+		}
 }
 
 var heroImage = new Image();
@@ -120,8 +135,8 @@ keystate,
 player = {
 	x: 0,
 	y: 0,
-	width:  80,
-	height: 80,
+	width:  70,
+	height: 70,
 	/**
 	 * Update the position depending on pressed keys
 	 */
@@ -146,8 +161,8 @@ player = {
 ai = {
 	x: 0,
 	y: 200,
-	width:  80,
-	height: 80,
+	width:  70,
+	height: 70,
 	/**
 	 * Update the position depending on the ball position
 	 */

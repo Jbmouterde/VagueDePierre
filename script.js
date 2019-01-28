@@ -89,10 +89,10 @@ function drawNumber(n, x, y, ralign) {
 }
 
 var heroImage = new Image();
-heroImage.src = "./images/ee.png";
+heroImage.src = "./images/clem.png";
 
 var ennemyImage = new Image();
-ennemyImage.src = "./images/f.png";
+ennemyImage.src = "./images/Marg.png";
 
 var argent = new Image();
 argent.src = "./images/argent.png";
@@ -120,14 +120,14 @@ keystate,
 player = {
 	x: 0,
 	y: 0,
-	width:  50,
+	width:  80,
 	height: 80,
 	/**
 	 * Update the position depending on pressed keys
 	 */
 	update: function() {
-		if (keystate[UpArrow]) this.y -= 10;
-		if (keystate[DownArrow]) this.y += 10;
+		if (keystate[UpArrow]) this.y -= 13;
+		if (keystate[DownArrow]) this.y += 13;
 		// keep the paddle inside of the canvas
 		this.y = Math.max(Math.min(this.y, HEIGHT - this.height), 0);
 	},
@@ -146,7 +146,7 @@ player = {
 ai = {
 	x: 0,
 	y: 200,
-	width:  50,
+	width:  80,
 	height: 80,
 	/**
 	 * Update the position depending on the ball position

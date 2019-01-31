@@ -97,7 +97,7 @@ function drawNumber(n, x, y, ralign) {
 	}
 	ctx.restore();
 // console.log('this is n[1]' + n[1][0][0])
-console.log('test'+ POINTS[j] )
+// console.log('test'+ POINTS[j] )
 
 
 	// if (n >= 005){

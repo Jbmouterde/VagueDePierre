@@ -29,12 +29,23 @@ body {
     left: 0;
     right: 0;
     margin-top: 115px; 
-    border : 5px solid red; 
+    border : 5px solid white; 
     border-radius : 100px ;
     /* background-color : blue  */
 
 }
 
+.rule{
+    float : left ;
+    background-color : lightgray;
+    text-align: center;
+}
+
+.rules{
+    float : right ;
+    background-color : lightgray;
+    text-align: center;
+}
 
 button {
     text-align: center;
@@ -44,7 +55,7 @@ button {
     border-radius: 70px;
     margin-bottom: 5px;
     margin-TOP: 5px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
 
     color : red;
 }
@@ -63,12 +74,12 @@ body > div:nth-child(5) > img{
     float : left ;
     width: 250px;
     height: 300px;
-    padding-top : 10rem;
+    padding-left : 4rem;
 }
 body > div:nth-child(6) > img{
     float : right;
     width: 250px;
     height: 300px;
-    padding-top : 10rem;
+    padding-right : 4rem;
 
 }

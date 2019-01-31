@@ -8,13 +8,18 @@
 
 </head>
 <body>
-<p> Battle of the Director 2019  <br> Timer:  <span id="minutes"></span>:<span id="seconds"></span></p> 
+ <h2 class="t"> Battle of the Director 2019</h2>   Timer:  <span id="minutes"></span>:<span id="seconds"></span>
 <div class="center">
 
 
 <button type="button" class="btn btn-default btn-lg">
-	<span  aria-hidden="true"></span>NEW GAME
+	<span  aria-hidden="true"></span>START NEW GAME
+  </button> <button type="button" class="btn btn-default btn-lg">
+	<span  aria-hidden="true"></span>QUIT THE MASTER 
   </button>
+
+  <div><canvas id="canvas" class="gameCanvas" width="600" height="600"></canvas></div>
+
 
 </div>
 <script

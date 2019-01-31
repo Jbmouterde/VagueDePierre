@@ -1,5 +1,8 @@
 
-
+$("body > div.center > button:nth-child(2)").click(function(){
+	$("#canvas").slideToggle(800);
+  });
+//   console.log()
 // TIMER 
 var sec = 0;
 function pad ( val ) { return val > 9 ? val : "0" + val; }
@@ -9,7 +12,7 @@ setInterval( function(){
 }, 1000);
 
 // BUTTON START 
-$("body > div.center > button").click(function(){
+$("body > div.center > button:nth-child(1)").click(function(){
     location.reload();
   });
 /**
@@ -60,13 +63,12 @@ function drawNumber(n, x, y, ralign) {
 		padding = 16;
 	
 	ctx.save();
-	ctx.strokeStyle = "#fff";
-	ctx.lineCap = "square";
+	ctx.strokeStyle = "red";
+	ctx.lineCap = "round";
 	ctx.lineWidth = padding/2;
 	if (ralign) { // if right aligned move x coord accordingly
 		x -= (n.length*(padding+size)-padding);
-
-		// console.log(n)
+	
 		
 	}
 	ctx.translate(x, y);
@@ -79,7 +81,6 @@ function drawNumber(n, x, y, ralign) {
 				var p = POINTS[j];
 				ctx.moveTo(p[0]*size, p[1]*size);
 				ctx.lineTo(p[2]*size, p[3]*size);
-				// console.log(j.length, j)
 				// console.log(num.length, num)
 
 			}
@@ -95,12 +96,14 @@ function drawNumber(n, x, y, ralign) {
 
 	}
 	ctx.restore();
-	// console.log(player.n)
+// console.log('this is n[1]' + n[1][0][0])
+console.log('test'+ POINTS[j] )
 
-	if (n >= 10){
-		alert("GAME OVER!!!" );
-		window.location.href = "index.html" 
-		}
+
+	// if (n >= 005){
+	// 	alert("GAME OVER!!!" );
+	// 	window.location.href = "index.html" 
+		// }
 }
 
 var heroImage = new Image();
@@ -191,8 +194,8 @@ ball = {
 	x:   null,
 	y:   null,
 	vel: null,
-	side:  20,
-	speed: 12,
+	side:  15,
+	speed: 5,
 	/**
 	 * Serves the ball towards the specified side
 	 * 
@@ -288,7 +291,7 @@ function requestFullscreen() {
  */
 function main() {
 	// create, initiate and append game canvas
-	canvas = document.createElement("canvas");
+	canvas = document.querySelector(".gameCanvas");
 	canvas.width = WIDTH;
 	canvas.height = HEIGHT;
 	ctx = canvas.getContext("2d");
@@ -349,7 +352,7 @@ function update() {
 function draw() {
 	ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	ctx.save();
-	ctx.fillStyle = "#fff";
+	ctx.fillStyle = "red";
 	ball.draw();
 	player.draw();
 	ai.draw();
@@ -357,7 +360,7 @@ function draw() {
 	var w = 4;
 	var x = (WIDTH - w)*0.5;
 	var y = 0;
-	var step = HEIGHT/20; // how many net segments
+	var step = HEIGHT/10; // how many net segments
 	while (y < HEIGHT) {
 		ctx.fillRect(x, y+step*0.25, w, step*0.5);
 		y += step;

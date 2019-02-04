@@ -37,16 +37,19 @@ body {
 
 .rule{
     float : left ;
-    background-color : lightgray;
     text-align: center;
+    background-color : rgba(0,0,0,0.7);
+
 }
 
 .rules{
     float : right ;
-    background-color : lightgray;
+    /* background-color : lightgray; */
     text-align: center;
 }
-
+.global {
+    float : left 
+}
 button {
     text-align: center;
     background-color: white;
@@ -70,7 +73,7 @@ button:hover{
     /* margin-top : 10px ;  */
 }
 
-body > div:nth-child(5) > img{
+body > div.global > div:nth-child(2) > img{
     float : left ;
     width: 250px;
     height: 300px;

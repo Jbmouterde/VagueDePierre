@@ -195,7 +195,7 @@ ball = {
 	y:   null,
 	vel: null,
 	side:  15,
-	speed: 5,
+	speed: 10,
 	/**
 	 * Serves the ball towards the specified side
 	 * 

@@ -113,7 +113,7 @@ var ennemyImage = new Image();
 ennemyImage.src = "./images/Marg.png";
 
 var argent = new Image();
-argent.src = "./images/argent.png";
+argent.src = "./images/image.png";
 
 var
 /**
@@ -195,7 +195,7 @@ ball = {
 	y:   null,
 	vel: null,
 	side:  15,
-	speed: 10,
+	speed: 8,
 	/**
 	 * Serves the ball towards the specified side
 	 * 
@@ -266,7 +266,7 @@ ball = {
 	 * Draw the ball to the canvas
 	 */
 	draw: function() {
-		ctx.fillRect(this.x, this.y, this.side, this.side);
+		ctx.drawImage(argent, this.x, this.y, this.side, this.side);
 	}
 };
 function requestFullscreen() {

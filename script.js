@@ -100,10 +100,10 @@ function drawNumber(n, x, y, ralign) {
 // console.log('test'+ POINTS[j] )
 
 
-	// if (n >= 005){
-	// 	alert("GAME OVER!!!" );
-	// 	window.location.href = "index.html" 
-		// }
+	if (n >= 010){
+		alert("GAME OVER!!!" );
+		window.location.href = "index.html" 
+		}
 }
 
 var heroImage = new Image();

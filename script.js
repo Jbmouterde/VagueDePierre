@@ -16,11 +16,7 @@ $("body > div.center > button:nth-child(1)").click(function(){
     location.reload();
   });
 /**
- * Scoreboard stuff
- *  _   0
- * |_| 123 <= coresponding indexes, ie. for 1 is 
- * |_| 456    bar 3 and 6 visible => 0 001 001
- * 
+ 
  */
 var NUMS = [
 	"1 101 111",
@@ -58,7 +54,7 @@ function pad(str, padding, width) {
 	return (new Array(width||2).join(padding||0)+str).slice(-width)
 }
 function drawNumber(n, x, y, ralign) {
-	n = n.toString(); // convert to string => possible to loop thru all digits
+	n = n.toString(); 
 	var size = 32,
 		padding = 16;
 	
@@ -66,7 +62,7 @@ function drawNumber(n, x, y, ralign) {
 	ctx.strokeStyle = "red";
 	ctx.lineCap = "round";
 	ctx.lineWidth = padding/2;
-	if (ralign) { // if right aligned move x coord accordingly
+	if (ralign) { 
 		x -= (n.length*(padding+size)-padding);
 	
 		
@@ -96,8 +92,7 @@ function drawNumber(n, x, y, ralign) {
 
 	}
 	ctx.restore();
-// console.log('this is n[1]' + n[1][0][0])
-// console.log('test'+ POINTS[j] )
+
 
 
 	if (n >= 010){
@@ -107,10 +102,10 @@ function drawNumber(n, x, y, ralign) {
 }
 
 var heroImage = new Image();
-heroImage.src = "./images/clem.png";
+heroImage.src = "./images/quent.png";
 
 var ennemyImage = new Image();
-ennemyImage.src = "./images/Marg.png";
+ennemyImage.src = "./images/jb.png";
 
 var argent = new Image();
 argent.src = "./images/image.png";
